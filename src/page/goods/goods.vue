@@ -1,12 +1,10 @@
 <template>
     <div class="goods-view">
-            <van-notice-bar  text="即日起在本小店购买猕猴桃满500元,赠送大保健一次。即日起在本小店购买猕猴桃满500元,赠送大保健一次。"
-            left-icon="././assets/notice.png"
-            />
+            <van-notice-bar  :text="notices.msg" left-icon="/images/notice.png" />
             <div class="goods-banner">
                 <van-swipe :autoplay="3000">
-                    <van-swipe-item v-for="(image, index) in images" :key="index">
-                        <img :src="image"/>
+                    <van-swipe-item v-for="(item, index) in banners" :key="index">
+                        <router-link :to="item.urlPath"><img :src="item.imgPath"/> </router-link>
                     </van-swipe-item>
                 </van-swipe>
             </div>
@@ -24,19 +22,32 @@
         data() {
             return {
                 active: 0,
-                images: [
-                    'http://via.placeholder.com/750x320',
-                    'http://via.placeholder.com/750x320'
-                ],
+                banners: [],
+                notices: {},
                 productList: [] 
             }
         },
         created() {  
         },
         mounted() { 
+            this.getNotice();
+            this.getBannerList();
             this.getProductList(); 
         },
         methods: { 
+            //获取跑马灯公告
+            getNotice() { 
+                this.$http.get(this.$apiUrl.notice).then( res => {
+                    this.notices = res.data
+                });
+            },
+            //获取轮播图数据
+            getBannerList() {
+                this.banners = [];
+                this.$http.get(this.$apiUrl.bannerList).then( res => {
+                    this.banners = res.data;
+                });
+            },
             //获取商品列表
             getProductList() {
                 this.productList = []; 
@@ -46,15 +57,16 @@
                         this.productList.filter( item => {
                             item.count = 1
                         }) 
+                        console.log(this.productList)
                     }
                 })
             },
             //添加到购物车
             addToCart(data){  
-                if(data.number !== 0) {
+                if(data.number !== 0) { 
                     this.$http.get(this.$apiUrl.addToCart, {productId: data.id, numbers: data.number}).then(res => {
                         if(res.status == 200){
-                            this.$toast.success("加入购物车")
+                            this.$toast.success("加入购物车成功")
                         }else{
                             this.$toast.fail("加入购物车失败")
                         }

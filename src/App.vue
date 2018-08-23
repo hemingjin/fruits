@@ -1,13 +1,13 @@
 <template>
   <div id="app" class="container">
-    <keep-alive>
+    <!-- <keep-alive> -->
         <router-view></router-view>
-    </keep-alive>
+    <!-- </keep-alive> -->
     
     
     <van-tabbar v-model="active" fixed @change="getCurrentPage">
-        <van-tabbar-item icon="shop" to="/goods"> 商品 </van-tabbar-item>
-        <van-tabbar-item icon="cart" to="/cart"> 购物车 </van-tabbar-item>
+        <van-tabbar-item icon="shop-collect" to="/goods"> 商品 </van-tabbar-item>
+        <van-tabbar-item icon="shopping-cart" to="/cart"> 购物车 </van-tabbar-item>
         <van-tabbar-item icon="contact" to="/user"> 个人中心 </van-tabbar-item>
     </van-tabbar>  
 

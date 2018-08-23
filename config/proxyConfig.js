@@ -1,5 +1,4 @@
-// const apiHost = "https://www.vue-js.com";
-const apiHost = "http://bingjia.320.io"
+const apiHost = "http://fruits.vchuang.com.cn"
 
 module.exports = {
     proxy: {

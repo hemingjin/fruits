@@ -1,13 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import goods from '@/page/goods/goods.vue'
 import cart from '@/page/cart/cart.vue'
 import user from '@/page/user/user.vue'
-
 import order from '@/page/order/order.vue'
+
 import orderDetail from '@/page/orderDetail/orderDetail.vue'
 import address from '@/page/address/address.vue'
 import editAddress from '@/page/editAddress/editAddress.vue'
+
+import page404 from '@/page/errorPage/page404.vue'
 
 Vue.use(Router) 
 const router = new Router({
@@ -15,10 +18,19 @@ const router = new Router({
   linkActiveClass: 'active',
   routes: [
     {
+      path: '*',
+      component: page404
+    },
+    {
       path: '/',
       name: 'goods',
       redirect: '/goods'
-    }, {
+    }, 
+    {
+      path: '/index',
+      name: 'goods',
+      redirect: '/goods'
+    },{
       name: 'goods',
       path: '/goods',
       component: goods,

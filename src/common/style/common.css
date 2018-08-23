@@ -1,6 +1,3 @@
-.test{
-    
-}
 .costum-btn{
     display: inline-block;
     width: 100%;
@@ -11,4 +8,14 @@
     font-size: 14px;
     border: none;
     outline: none;
+}
+
+.costum-btn-mini{
+	width: 100px;
+    height: 24px;
+}
+
+.van-submit-bar{
+	bottom: 50px;
+	border-bottom: 1px solid #eee;
 }

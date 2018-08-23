@@ -3,7 +3,7 @@ import axios from 'axios';
 axios.defaults.timeout = 5000
 if (process.env.NODE_ENV == 'production') {
     // 部署服务调用正式地址
-    axios.defaults.baseURL = 'http://bingjia.320.io';
+    axios.defaults.baseURL = 'http://fruits.vchuang.com.cn';
 } else {
     // 开发测试地址
     axios.defaults.baseURL = '/api';

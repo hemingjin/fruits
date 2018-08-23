@@ -1,10 +1,13 @@
 const apiUrl =  { 
+    bannerList: '/banner/list',  //获取轮播图数据
+    noticeList: '/trumpet/list', //获取通知公告数据 list 
+    notice: '/trumpet/info',   //获取公告 
     //用户
     getUserInfo: '/user/info',   //获取用户信息 
     getCode: '/user/code',  //获取验证码  /user/code/15298038989
     bindPhone: '/user/bind',  //绑定手机号 参数： code   /user/bind/15298038989?code=1234
     //商品
-    productList: '/product/list', //
+    productList: '/product/list', //获取商品列表
     //购物车
     cartList: '/user/car/list', 
     addToCart: '/user/car/add',  //添加到购物车  参数：productId,  numbers,

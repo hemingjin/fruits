@@ -26,7 +26,7 @@
                                 @minus="getNumber"></m-stepper>
                         </van-col>
                         <van-col span="10" >
-                            <van-button type="danger" :disabled="product.count == 0" size="small" @click="addToCart(product.id, product.count)">
+                            <van-button class="costum-btn-mini" type="danger" :disabled="product.count == 0" size="mini" @click="addToCart(product.id, product.count)">
                                 <van-icon name="cart"></van-icon>加入购物车
                             </van-button>
                         </van-col>
@@ -98,11 +98,11 @@
 .goods-handle i{
     margin-right: 4px;
 }
-.van-button--small {
+.van-button--mini {
     height: 24px;
     padding: 0 4px;
     min-width: 60px;
     font-size: 12px;
     line-height: 24px;
-}
+} 
 </style>

@@ -9,7 +9,7 @@
         </div>
         <div v-else>
             <van-checkbox-group class="card-goods" v-model="checkedGoods">
-                <van-checkbox class="card-goods__item van-hairline--surround" v-for="item in goods" :key="item.id" :name="item.id"> 
+                <van-checkbox class="card-goods__item van-hairline--surround" v-for="item in goods" :key="item.carId" :name="item.carId"> 
                     <cart-item :product="item" @on-change="changeNumber" @remove="removeCart"></cart-item>
                 </van-checkbox>
             </van-checkbox-group>
@@ -55,18 +55,19 @@
             //设置选中项
             getCheckedGoods() {
                 this.goods.filter(item => {
-                    this.checkedGoods.push(item.id)
+                    this.checkedGoods.push(item.carId)
                 })
             },
             //获取总价
             getTotalPrice() {
                 this.totalPrice = 0;
                  this.goods.filter( item => {
-                    if(this.checkedGoods.indexOf(item.id) != -1){
-                        var itemPrice = item.productPrice*item.number 
+                    if(this.checkedGoods.indexOf(item.carId) != -1){
+                        var itemPrice = parseFloat(item.productPrice*item.productNumbers)  
                         this.totalPrice += itemPrice
                     }
-                 })
+                 }) 
+                 console.log("总价:", this.totalPrice)
             }, 
             //增加减少数量
             changeNumber(data) { 
@@ -87,11 +88,9 @@
             removeCart(data) {
                 console.log('删除的购物车ID:', data.cartId)
                 this.$http.get(this.$apiUrl.removeCart, {carId: data.cartId}).then(res => {
-                    if(res.status == 200){
-                        this.getCartList();
-                        this.getCheckedGoods();
-                        this.getTotalPrice();
-                    }
+                    this.getCartList();
+                    this.getCheckedGoods();
+                    this.getTotalPrice(); 
                 })
             }
         },

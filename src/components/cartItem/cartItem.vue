@@ -16,13 +16,13 @@
 						￥{{product.productPrice}}
 					</div>
 					<div class="stepper">
-						<m-stepper :number="product.number" @plus="getNumber" @minus="getNumber"></m-stepper>
+						<m-stepper :number="product.productNumbers" @plus="getNumber" @minus="getNumber"></m-stepper>
 					</div>
 				</div>
 			</van-col> 
 			<van-col span="6">
 				<div class="btn">
-					<van-button type="danger"  size="mini" @click.stop="remove(product.id)">
+					<van-button type="danger"  size="mini" @click.stop="remove(product.carId)">
 						<van-icon name="delete"></van-icon>删除
 					</van-button>
 				</div>
@@ -51,7 +51,7 @@
 				this.$emit('remove', {cartId: id});
 			},
 			getNumber(data) {
-				this.product.number = data.number
+				this.product.productNumbers = data.number
 				this.$emit('on-change', {number: data.number})
 			}
 		},

@@ -36,7 +36,7 @@ new Vue({
     this.checkLogin();
   },
   methods: {
-    checkLogin() { 
+    checkLogin() {  
       this.$http.get(this.$apiUrl.getUserInfo).then(res => { 
           var userInfo = {
             nickName: res.data.nickName,
@@ -60,3 +60,5 @@ new Vue({
     }
   }
 }) 
+
+//http://fruits.vchuang.com.cn/wx/author/accredit

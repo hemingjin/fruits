@@ -4,7 +4,9 @@
             <div class="goods-banner">
                 <van-swipe :autoplay="3000">
                     <van-swipe-item v-for="(item, index) in banners" :key="index">
-                        <router-link :to="item.urlPath"><img :src="item.imgPath"/> </router-link>
+                        <router-link :to="item.urlPath">
+                            <img :src="item.imgPath" v-lazy="item.imgPath"/> 
+                        </router-link>
                     </van-swipe-item>
                 </van-swipe>
             </div>

@@ -13,7 +13,7 @@ module.exports = {
     proxyTable: proxyConfig.proxy,
 
     // Various Dev Server settings
-    host: '192.168.1.104', // can be overwritten by process.env.HOST
+    host: '192.168.1.26', // can be overwritten by process.env.HOST
     port: 8084, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
@@ -64,7 +64,7 @@ module.exports = {
     // Surge or Netlify already gzip all static assets for you.
     // Before setting to `true`, make sure to:
     // npm install --save-dev compression-webpack-plugin
-    productionGzip: false,
+    productionGzip: false,  //true 开启gzip压缩
     productionGzipExtensions: ['js', 'css'],
 
     // Run the build command with an extra argument to

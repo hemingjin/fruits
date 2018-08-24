@@ -4,19 +4,15 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-import Vant from 'vant'
-import wx from 'weixin-js-sdk'
+import Vant from 'vant' 
 import 'vant/lib/vant-css/index.css'
 import '@/common/style/index.css'
-
-import { Toast, Dialog } from 'vant'
-
-
+import { Toast, Dialog, Lazyload } from 'vant'
 import http from '@/api/http.js'
 import apiUrl from '@/api/apiUrl.js'
 
 Vue.use(Vant)
-Vue.prototype.wx = wx
+Vue.use(Lazyload); 
 Vue.prototype.$http = http; 
 Vue.prototype.$apiUrl = apiUrl;
 
@@ -36,7 +32,10 @@ new Vue({
     this.checkLogin();
   },
   methods: {
-    checkLogin() {  
+    checkLogin() { 
+      window.pageYOffset = 0;
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;  //页面置顶 
       this.$http.get(this.$apiUrl.getUserInfo).then(res => { 
           var userInfo = {
             nickName: res.data.nickName,

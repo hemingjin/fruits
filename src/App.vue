@@ -69,6 +69,9 @@ export default {
         }    
     }
   },
+  mounted() {
+      
+  },
   methods: {
     getCurrentPage(active) {
       this.active = active

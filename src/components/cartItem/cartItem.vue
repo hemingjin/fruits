@@ -2,7 +2,7 @@
 	<div class="cart-li">
 		<van-row :gutter="20"> 
 			<van-col span="6">
-				<img class="pro-img" :src="product.imgPath">
+				<img class="pro-img" :src="product.imgPath" v-lazy="product.imgPath">
 			</van-col>
 			<van-col span="12">
 				<div class="title">

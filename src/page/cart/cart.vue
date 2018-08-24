@@ -8,19 +8,21 @@
             </van-button>
         </div>
         <div v-else>
-            <van-checkbox-group class="card-goods" v-model="checkedGoods">
+            <van-checkbox-group class="card-goods" v-model="checkedGoods" @change="changeCheckedGoods"> 
                 <van-checkbox class="card-goods__item van-hairline--surround" v-for="item in goods" :key="item.carId" :name="item.carId"> 
                     <cart-item :product="item" @on-change="changeNumber" @remove="removeCart"></cart-item>
                 </van-checkbox>
             </van-checkbox-group>
-            <van-submit-bar :price="totalPrice*100" :disabled="!checkedGoods.length" :button-text="submitBarText" @submit="onSubmit" />
+            <!-- <van-submit-bar :price="totalPrice*100" :disabled="!checkedGoods.length" :button-text="submitBarText" @submit="onSubmit" /> -->
+            <cart-submit-bar :checked="isAllChecked" :disabled="checkedGoods.length" :price="totalPrice" :text="submitBarText" @on-change="checkAll" @on-submit="onSubmit"></cart-submit-bar>
         </div>
+        
     </div>
 </template>
 <script>
     import head from '@/components/head/head.vue'
     import cartItem from '@/components/cartItem/cartItem.vue'
-
+    import submitBar from '@/components/submitBar/submitBar.vue'
     export default {
         data() {
             return {
@@ -28,39 +30,40 @@
                 checkedGoods: [],
                 goods: [],
                 totalPrice: 0,
+                submitBarText: '',
+                isAllChecked: false
             }
         },
         computed: {
-            submitBarText() {
-                const count = this.checkedGoods.length;
-                return '结算' + (count ? `(${count})` : '');
-            } 
+            
         },
         watch: {
             'checkedGoods' : 'getTotalPrice'
         },
         mounted() {
-            this.getCartList();
-            this.getCheckedGoods();
-            this.getTotalPrice();
+            this.getCartList(); 
+            this.getTotalPrice(); 
         },
         methods: {
             //获取购物车列表
             getCartList() {
                 this.goods = [];
-                this.$http.get(this.$apiUrl.cartList).then( res => {
-                    this.goods = res.data;
+                 
+                this.$http.get(this.$apiUrl.cartList).then( res => { 
+                    this.goods = res.data; 
                 })
             },
             //设置选中项
             getCheckedGoods() {
+                this.checkedGoods = [];
                 this.goods.filter(item => {
                     this.checkedGoods.push(item.carId)
-                })
+                }) 
             },
             //获取总价
             getTotalPrice() {
                 this.totalPrice = 0;
+                this.getSubmitBarText();
                  this.goods.filter( item => {
                     if(this.checkedGoods.indexOf(item.carId) != -1){
                         var itemPrice = parseFloat(item.productPrice*item.productNumbers)  
@@ -73,12 +76,17 @@
             changeNumber(data) { 
                 this.getTotalPrice()
             },
+            getSubmitBarText() {
+                const count = this.checkedGoods.length;
+                this.submitBarText =  '结算' + (count ? `(${count})` : '');
+            }, 
             //结算提交
             onSubmit() {
+                this.$toast('点击结算');
                 this.$http.get(this.apiUrl.addOrder).then( res => {
 
                 })
-                this.$toast('点击结算');
+                
             },
             //去商品列表页
             toGoods() {
@@ -88,19 +96,43 @@
             removeCart(data) {
                 console.log('删除的购物车ID:', data.cartId)
                 this.$http.get(this.$apiUrl.removeCart, {carId: data.cartId}).then(res => {
-                    this.getCartList();
-                    this.getCheckedGoods();
+                    this.getCartList(); 
                     this.getTotalPrice(); 
                 })
+            },
+            changeCheckedGoods(data) {
+                console.log(data, this.goods)
+                if(data.length == this.goods.length){
+                    this.isAllChecked = true
+                }else{
+                    this.isAllChecked = false
+                }
+            },
+            //全选
+            checkAll(data){
+                console.log(data)
+                if(data){
+                    this.isAllChecked = true
+                    this.getCheckedGoods();
+                } else{
+                    this.isAllChecked = false
+                    this.checkedGoods = [];
+                    
+                }
             }
         },
         components: {
             'm-head': head,
-            'cart-item': cartItem
+            'cart-item': cartItem,
+            'cart-submit-bar': submitBar
         }
     }
 </script>
 <style lang="" scoped>
+.cart-view{
+        padding-bottom: 60px;
+    background: #fff;
+}
     .card-goods {
   padding: 10px;
   background-color: #fff;

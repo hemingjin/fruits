@@ -19,3 +19,14 @@
 	bottom: 50px;
 	border-bottom: 1px solid #eee;
 }
+.van-checkbox__icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+
+}
+.van-checkbox__label{
+	margin-left: 25px;
+}

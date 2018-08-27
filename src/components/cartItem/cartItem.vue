@@ -1,33 +1,31 @@
 <template>
 	<div class="cart-li">
-		<van-row :gutter="20"> 
-			<van-col span="6">
-				<img class="pro-img" :src="product.imgPath" v-lazy="product.imgPath">
-			</van-col>
-			<van-col span="12">
-				<div class="title">
-					{{product.productName}}
-				</div>
-				<div class="desc">
-					{{product.description}}
-				</div>
-				<div class="handle">
-					<div class="price">
-						￥{{product.productPrice}}
+		<div class="cart-li-view">
+			<van-row :gutter="10"> 
+				<van-col span="6">
+					<img class="pro-img" :src="product.imgPath" v-lazy="product.imgPath">
+				</van-col>
+				<van-col span="18">
+					<div class="title">
+						{{product.productName}}
 					</div>
-					<div class="stepper">
-						<m-stepper :number="product.productNumbers" @plus="getNumber" @minus="getNumber"></m-stepper>
+					<div class="desc">
+						{{product.description}}
 					</div>
-				</div>
-			</van-col> 
-			<van-col span="6">
-				<div class="btn">
-					<van-button type="danger"  size="mini" @click.stop="remove(product.carId)">
-						<van-icon name="delete"></van-icon>删除
-					</van-button>
-				</div>
-			</van-col>
-		</van-row>
+					<div class="handle">
+						<div class="price">
+							￥{{product.productPrice}}
+						</div>
+						<div class="stepper">
+							<m-stepper :number="product.productNumbers" @plus="getNumber" @minus="getNumber"></m-stepper>
+						</div>
+					</div>
+				</van-col>  
+			</van-row>	
+		</div>
+		<div class="handle-section van-hairline---top-bottom">
+			<van-button type="danger" size="mini" @click.stop="remove(product.carId)"> 删除商品 </van-button>
+		</div>
 	</div>
 </template>
 <script type="text/javascript">
@@ -62,7 +60,7 @@
 	}
 </script>
 <style type="text/css" scoped>
-.cart-li{
+.cart-li-view{
 	padding-left: 20px;
 }
 .pro-img{
@@ -71,29 +69,28 @@
 	border-radius: 4px;
 }	
 .title{
-	font-size: 14px;
-	color: #333;
-	margin-bottom: 5px;
+	font-size: 12px;
+	color: #333; 
 }
 .desc{
 	font-size: 12px;
 	color: #666;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 }
 .handle{
 	overflow: hidden;
 }
 .price{
 	float: left;
-	color: #666;
+	color: #ff4444;
 	font-size: 12px;
 	line-height: 24px;
 }
 .stepper{
 	float: right;
 }
-.btn{
-	margin: 20px auto ;
-	text-align: center;
+.handle-section{
+	margin-top: 10px; 
+	text-align: right;
 }
 </style>

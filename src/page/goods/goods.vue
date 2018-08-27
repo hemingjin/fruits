@@ -10,8 +10,8 @@
                     </van-swipe-item>
                 </van-swipe>
             </div>
-            <div class="goods-list">
-                <div class="goods-item" v-for="(item, index) in productList">
+            <div class="goods-list  van-hairline--surround">
+                <div class="goods-item  van-hairline--bottom" v-for="(item, index) in productList">
                     <goods-item :product="item" @add="addToCart"></goods-item>
                 </div>
             </div>
@@ -58,8 +58,7 @@
                         this.productList = res.data;
                         this.productList.filter( item => {
                             item.count = 1
-                        }) 
-                        console.log(this.productList)
+                        })  
                     }
                 })
             },
@@ -93,10 +92,12 @@
     width: 100%;
     height: 100%;
 }
- 
-.goods-item{
+.goods-list{
     padding: 10px;
-    margin-bottom: 10px;
+}
+.goods-item{
+    padding: 10px 15px;
+    margin: auto 10px;
     background: #fff;
 }
 

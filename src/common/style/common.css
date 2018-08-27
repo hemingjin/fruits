@@ -22,11 +22,41 @@
 .van-checkbox__icon {
     position: absolute;
     top: 50%;
+    left: 0;
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
 
 }
 .van-checkbox__label{
+	/*margin-left: 25px;*//*
+	width: 100%;*/
+}
+
+.cart-li .van-button--mini {
+    padding: 0 4px; 
+    font-size: 12px; 
+    min-width: 50px;
+} 
+.card-goods__item .van-checkbox__icon{
+	left: 10px;
+}
+.van-checkbox__icon--checked .van-icon{
+	color: #fff;
+    border-color: #ff4444;
+    background-color: #ff4444;
+}
+.submit-bar .van-row{
+	position: relative;
+}
+.submit-bar .van-checkbox__icon {
+	left: 30px;
+}
+.submit-bar .van-checkbox__label{
 	margin-left: 25px;
+}
+.handle-section .van-button--mini{
+	padding: 0 4px;
+	min-width: 60px;
+	line-height: 22px;
 }

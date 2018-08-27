@@ -3,7 +3,7 @@
         <button class="step-minus" 
             :class="{'step-minus-disabled' : num == 0}"
             @click.stop="onMinus">-</button>
-        <input type="number" disable="disabled" class="step-input" v-model="num">
+        <input type="number" disable="disabled van-hairline--top-bottom" class="step-input" v-model="num">
         <button class="step-plus" @click.stop="onPlus">+</button>
     </div>
 </template>
@@ -46,6 +46,7 @@
     font-size: 0;
 }
 .my-stepper .step-input{
+    position: relative;
     width: 23px;
     height: 20px;
     padding: 1px;

@@ -26,7 +26,7 @@
                                 @minus="getNumber"></m-stepper>
                         </van-col>
                         <van-col span="10" >
-                            <van-button class="costum-btn-mini" type="danger" :disabled="product.count == 0" size="mini" @click="addToCart(product.id, product.count)">
+                            <van-button class="costum-btn-mini" type="danger" :disabled="isDisabled" size="mini" @click="addToCart(product.id, product.count)">
                                 <van-icon name="cart"></van-icon>加入购物车
                             </van-button>
                         </van-col>
@@ -41,7 +41,7 @@
     export default {
         data() {
             return {
-                
+                isDisabled: false
             }
         },
         props: {
@@ -51,7 +51,9 @@
         },
         methods: {
             getNumber(data) {
+                console.log(data)
                 this.product.count = data.number
+                this.isDisabled = data.number==0 ? true : false
             },
             addToCart(id, count) {
                 this.$emit('add', {id: id, number: count})

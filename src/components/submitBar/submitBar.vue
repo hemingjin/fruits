@@ -1,5 +1,5 @@
 <template>
-	<div class="submit-bar van-hairline--bottom">
+	<div class="submit-bar  ">
 		<van-row :gutter="20">
 			<van-col span="6">
 				<div class="check">
@@ -26,7 +26,7 @@
 			return {  
 			}
 		},
-		props: {
+		props: { 
 			checked: {
 				type: Boolean
 			},
@@ -46,7 +46,7 @@
 			},
 			submit() {
 				this.$emit('on-submit')
-			}
+			}, 
 		}
 	}
 </script>
@@ -57,12 +57,15 @@
 	bottom: 50px;
 	z-index: 10;
 	width: 100%;
-	height: 50px;
-	background-color: #fff
+	min-height: 50px;
+	background-color: #fff;
+	box-shadow: 0 -1px 2px 0 rgba(0,0,0,0.1);
 }	
 .check{
 	line-height: 50px;
 	padding-left: 20px;
+	font-size: 12px;
+	vertical-align: top;
 }
 .price{
 	line-height: 50px;
@@ -79,7 +82,7 @@
 }
 .submit-text{
 	width: 100%;
-	line-height: 48px;
+	line-height: 50px;
 	background: #ff4444;
 }
 .submit-text span{
